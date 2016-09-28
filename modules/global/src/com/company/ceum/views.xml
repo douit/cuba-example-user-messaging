@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+    <view class="com.company.ceum.entity.Message"
+          extends="_local"
+          name="message-view">
+        <property name="sender"
+                  view="_minimal"/>
+        <property name="receiver"
+                  view="_minimal"/>
+        <property name="messageText"
+                  view="_local"/>
+    </view>
+</views>

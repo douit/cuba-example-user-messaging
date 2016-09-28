@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.ceum.web.message.MessageBrowse"
+        focusComponent="messagesTable"
+        lookupComponent="messagesTable"
+        messagesPack="com.company.ceum.web.message">
+    <dsContext>
+        <collectionDatasource id="messagesDs"
+                              class="com.company.ceum.entity.Message"
+                              view="message-view">
+            <query>
+                <![CDATA[select e 
+from ceum$Message e 
+where e.receiver.id = :session$userId]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <layout expand="messagesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="messagesTable"
+                datasource="messagesDs">
+            <properties include=".*"/>
+        </filter>
+        <table id="messagesTable"
+               width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="sender"/>
+                <column id="receiver"/>
+                <column id="subject"/>
+                <column id="entityReference"/>
+            </columns>
+            <rows datasource="messagesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="messagesTable.create"/>
+                <button id="editBtn"
+                        action="messagesTable.edit"/>
+                <button id="removeBtn"
+                        action="messagesTable.remove"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editCaption"
+        class="com.company.ceum.web.message.MessageEdit"
+        datasource="messageDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.ceum.web.message">
+    <dsContext>
+        <datasource id="messageDs"
+                    class="com.company.ceum.entity.Message"
+                    view="message-view">
+            <datasource id="messageTextDs"
+                        property="messageText"/>
+        </datasource>
+    </dsContext>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="messageDs" editable="false">
+            <column width="500px">
+                <field id="receiver"/>
+                <field id="subject"/>
+                <field id="entityReference"/>
+            </column>
+        </fieldGroup>
+        <richTextArea id="messageTextTextArea" datasource="messageTextDs" editable="false"
+                      property="text"
+                      width="100%"/>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>
