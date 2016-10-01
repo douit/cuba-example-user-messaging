@@ -3,5 +3,6 @@
     <menu id="application"
           insertBefore="administration">
         <item id="ceum$Message.browse"/>
+        <item id="ceum$Customer.browse"/>
     </menu>
 </menu-config>

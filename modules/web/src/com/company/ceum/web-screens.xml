@@ -5,4 +5,10 @@
             template="com/company/ceum/web/message/message-edit.xml"/>
     <screen id="ceum$Message.browse"
             template="com/company/ceum/web/message/message-browse.xml"/>
+    <screen id="mainWindow"
+            template="com/company/ceum/web/mainwindow/ext-mainwindow.xml"/>
+    <screen id="ceum$Customer.edit"
+            template="com/company/ceum/web/customer/customer-edit.xml"/>
+    <screen id="ceum$Customer.browse"
+            template="com/company/ceum/web/customer/customer-browse.xml"/>
 </screen-config>

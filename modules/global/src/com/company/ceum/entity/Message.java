@@ -1,15 +1,13 @@
 package com.company.ceum.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.annotation.PostConstruct;
+import javax.persistence.*;
+
+import com.haulmont.cuba.core.global.AppBeans;
+import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.security.entity.User;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.chile.core.annotations.NamePattern;
 
@@ -33,12 +31,28 @@ public class Message extends StandardEntity {
     @Column(name = "ENTITY_REFERENCE")
     protected String entityReference;
 
-    @Column(name = "MESSAGE_BOX", nullable = false)
-    protected Integer messageBox;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "MESSAGE_TEXT_ID")
     protected MessageText messageText;
+
+
+    @Column(name = "READ_", nullable = false)
+    protected Boolean read = false;
+
+    public void setRead(Boolean read) {
+        this.read = read;
+    }
+
+    public Boolean getRead() {
+        return read;
+    }
+
+
+    @PostConstruct
+    public void init() {
+        Metadata metadata = AppBeans.get(Metadata.class);
+        this.messageText = metadata.create(MessageText.class);
+    }
 
     public void setMessageText(MessageText messageText) {
         this.messageText = messageText;
@@ -48,14 +62,6 @@ public class Message extends StandardEntity {
         return messageText;
     }
 
-
-    public void setMessageBox(MessageBox messageBox) {
-        this.messageBox = messageBox == null ? null : messageBox.getId();
-    }
-
-    public MessageBox getMessageBox() {
-        return messageBox == null ? null : MessageBox.fromId(messageBox);
-    }
 
 
     public void setReceiver(User receiver) {

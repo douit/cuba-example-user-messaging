@@ -6,6 +6,13 @@
         focusComponent="fieldGroup"
         messagesPack="com.company.ceum.web.message">
     <dsContext>
+        <collectionDatasource id="usersDs"
+                              class="com.haulmont.cuba.security.entity.User"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from sec$User e]]>
+            </query>
+        </collectionDatasource>
         <datasource id="messageDs"
                     class="com.company.ceum.entity.Message"
                     view="message-view">
@@ -16,14 +23,19 @@
     <layout expand="windowActions"
             spacing="true">
         <fieldGroup id="fieldGroup"
-                    datasource="messageDs" editable="false">
+                    datasource="messageDs"
+                    editable="false">
             <column width="500px">
-                <field id="receiver"/>
+                <field id="receiver"
+                       optionsDatasource="usersDs"/>
                 <field id="subject"/>
                 <field id="entityReference"/>
+                <field id="read"/>
             </column>
         </fieldGroup>
-        <richTextArea id="messageTextTextArea" datasource="messageTextDs" editable="false"
+        <richTextArea id="messageTextTextArea"
+                      datasource="messageTextDs"
+                      editable="false"
                       property="text"
                       width="100%"/>
         <frame id="windowActions"
