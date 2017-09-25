@@ -2,6 +2,7 @@
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
     <view class="com.company.ceum.entity.Message"
           extends="_local"
+          systemProperties="true"
           name="message-view">
         <property name="sender"
                   view="_minimal"/>

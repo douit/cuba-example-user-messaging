@@ -10,9 +10,7 @@
                               class="com.company.ceum.entity.Message"
                               view="message-view">
             <query>
-                <![CDATA[select e 
-from ceum$Message e 
-where e.receiver.id = :session$userId]]>
+                <![CDATA[select e from ceum$Message e where e.receiver.id = :session$userId]]>
             </query>
         </collectionDatasource>
     </dsContext>

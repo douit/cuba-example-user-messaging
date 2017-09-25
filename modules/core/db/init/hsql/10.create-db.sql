@@ -17,7 +17,8 @@ create table CEUM_MESSAGE (
     READ_ boolean not null,
     --
     primary key (ID)
-)^^-- end CEUM_MESSAGE
+)^
+-- end CEUM_MESSAGE
 -- begin CEUM_MESSAGE_TEXT
 create table CEUM_MESSAGE_TEXT (
     ID varchar(36) not null,
